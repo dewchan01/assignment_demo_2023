@@ -1,39 +1,45 @@
 package main
 
 import (
-	"context"
-	"errors"
 	"testing"
-
 	"github.com/TikTokTechImmersion/assignment_demo_2023/rpc-server/kitex_gen/rpc"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestIMServiceImpl_Send(t *testing.T) {
-	type args struct {
-		ctx context.Context
-		req *rpc.SendRequest
-	}
-	tests := []struct {
-		name    string
-		args    args
-		wantErr error
-	}{
-		{
-			name: "success",
-			args: args{
-				ctx: context.Background(),
-				req: &rpc.SendRequest{},
-			},
-			wantErr: nil,
+func TestValidateSendRequest(t *testing.T) {
+	validRequest := &rpc.SendRequest{
+		Message: &rpc.Message{
+			Chat:   "user1:user2",
+			Sender: "user1",
+			Text:   "",
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			s := &IMServiceImpl{}
-			got, err := s.Send(tt.args.ctx, tt.args.req)
-			assert.True(t, errors.Is(err, tt.wantErr))
-			assert.NotNil(t, got)
-		})
+
+	invalidRequest := &rpc.SendRequest{
+		Message: &rpc.Message{
+			Chat:   "invalid",
+			Sender: "user1",
+			Text:   "",
+		},
 	}
+
+	err := validateSendRequest(validRequest)
+	assert.NoError(t, err, "Expected no error for a valid request")
+
+	err = validateSendRequest(invalidRequest)
+	assert.Error(t, err, "Expected an error for an invalid request")
+	assert.EqualError(t, err, "invalid Chat ID 'invalid', should be in the format of user1:user2")
+}
+
+func TestGetRoomID(t *testing.T) {
+	roomID, err := getRoomID("user1:user2")
+	assert.NoError(t, err, "Expected no error for a valid chat")
+
+	expectedRoomID := "user1:user2"
+	assert.Equal(t, expectedRoomID, roomID, "Expected the room ID to be user1:user2")
+
+	roomID, err = getRoomID("invalid")
+	assert.Error(t, err, "Expected an error for an invalid chat")
+	assert.EqualError(t, err, "invalid Chat ID 'invalid', should be in the format of user1:user2")
+	assert.Empty(t, roomID, "Expected an empty room ID for an invalid chat")
 }
