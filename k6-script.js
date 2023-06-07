@@ -17,6 +17,7 @@ export default function () {
         sender: "jack"
     });
     const headers = { 'Content-Type': 'application/json' };
+    // locally test api with running http-service container
     // const res = http.post('http://localhost:8080/api/send', payload, { headers });
     const res = http.post('http://http-server:8080/api/send', payload, { headers });
 
@@ -34,6 +35,8 @@ export default function () {
       reverse: true
     });
     const headers = { 'Content-Type': 'application/json' };
+    // locally test api with running http-service container
+    // use http.request() instead of http.get() due to lack of "request payload params" in http.get()
     // const res = http.request('GET', 'http://localhost:8080/api/pull', payload, { headers });
     const res = http.request('GET', 'http://http-server:8080/api/pull', payload, { headers });
     check(res, {

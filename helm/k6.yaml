@@ -39,8 +39,8 @@ data:
     export let options = {
       stages: [
         { duration: '1m', target: 20 },  // Ramp up to 20 virtual users over 1 minute
-        // { duration: '3m', target: 20 },  // Stay at 20 virtual users for 3 minutes
-        // { duration: '1m', target: 0 },   // Ramp down to 0 virtual users over 1 minute
+        { duration: '3m', target: 20 },  // Stay at 20 virtual users for 3 minutes
+        { duration: '1m', target: 0 },   // Ramp down to 0 virtual users over 1 minute
       ],
     };
 
@@ -76,4 +76,16 @@ data:
         
     }
 
+---
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: k6-service
+spec:
+  selector:
+    job-name: k6-job
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

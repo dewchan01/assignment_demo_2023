@@ -18,7 +18,9 @@ var (
 func main() {
 	ctx := context.Background() // https://www.digitalocean.com/community/tutorials/how-to-use-contexts-in-go
 	
-	err := rdb.InitClient(ctx, "redis-master:6379", "")
+	// init client on "redis-master:6379" while building this image to deploy in k8s
+	// err := rdb.InitClient(ctx, "redis-master:6379", "")
+	err := rdb.InitClient(ctx, "redis:6379", "")
     if err != nil {
        errMsg := fmt.Sprintf("failed to init Redis client, err: %v", err)
        log.Fatal(errMsg)
