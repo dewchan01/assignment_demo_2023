@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http-server
+  template:
+    metadata:
+      labels:
+        app: http-server
+    spec:
+      containers:
+        - name: http-server
+          image: chandavid01/assignment_demo_2023-http-server:latest
+          ports:
+            - containerPort: 8080
+          resources:
+              requests:
+                memory: "64Mi"
+                cpu: "250m"
+              limits:
+                memory: "128Mi"
+                cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-server-service
+spec:
+  selector:
+    app: http-server
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
