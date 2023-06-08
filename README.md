@@ -233,3 +233,4 @@ Make sure to adjust the YAML files and configurations according to your specific
 - [RPC Server Modification](https://github.com/weixingp/tiktok-tech-immersion-2023) by [weixingp](https://github.com/weixingp)
   - Description: The modification of rpc server was adapted from the code provided by weixingp. It helped in developing the connection between rpc-server and redis.
   - [Lark Document Reference](https://o386706e92.larksuite.com/docx/QE9qdhCmsoiieAx6gWEuRxvWsRc)
+- [Unit Test for handler_test.go](https://github.com/melvincwng/tiktok_assignment_demo_2023/blob/main/rpc-server/handler_test.go)
