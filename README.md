@@ -53,6 +53,16 @@ You can test the messaging system by sending HTTP requests to the provided APIs 
 
 I used [Postman Desktop App](https://www.postman.com/downloads/) to test both APIs. You can refer this [json](msgsys.postman_collection.json) file to make a quick import and test.
 
+### Unit Testing for RPC Server
+
+In the [unit test](https://github.com/melvincwng/tiktok_assignment_demo_2023/blob/main/rpc-server/handler_test.go)  provided by [melvincwng](http://github.com/melvincwng), running `go test rpc-server/handler_test.go` only executes the tests defined in the specific `handler_test.go` file. This command will only focus on the test file itself and assume that the necessary dependencies are already imported or available in the project. Therefore, the errors due to redeclarations and unknown fields in the `rpc-server` package scope will be ignored.
+
+To ensure comprehensive testing coverage of the entire package, I recommend using the command `go test github.com/TikTokTechImmersion/assignment_demo_2023/rpc-server`. This command allows the tests to traverse through the entire `rpc-server` package.
+
+I made an attempt to write my own unit tests and tried to mock Redis, but I encountered difficulties in executing them. As a result, I have kept only the two test cases that passed, while commenting out the rest. 
+
+If anyone has knowledge on how to debug this issue, I would greatly appreciate your assistance.
+
 ## Send API
 
 Users can send a message by sending an HTTP POST request to `/api/send`.
