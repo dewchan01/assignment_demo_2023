@@ -26,7 +26,6 @@
         - [Step-by-step manual to deploy the services in Kubernetes](#step-by-step-manual-to-deploy-the-redis-server-etcd-and-k6-in-kubernetes-under-default-namespace)
 - [Acknowledgements](#acknowledgements)
     - [Code References](#code-references)
-- [Contributing](#contributing)
 
 # High Level of Instant Messaging System Architecture
 ![Architecture](asset/whiteboard_exported_image.png)
