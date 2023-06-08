@@ -347,6 +347,4 @@ func TestIMServiceImplementation_Pull(t *testing.T) {
 // 	assert.Equal(t, 0, resp.Code)
 // 	assert.Equal(t, "success", resp.Msg)
 // 	assert.NotNil(t, resp.Messages)
-// 	// Add additional assertions based on your specific logic
-// 	// ...
 // }
