@@ -28,8 +28,6 @@
     - [Code References](#code-references)
 - [Contributing](#contributing)
 
----
-
 # High Level of Instant Messaging System Architecture
 ![Architecture](asset/whiteboard_exported_image.png)
 The system consists of two services: 
@@ -38,16 +36,12 @@ The system consists of two services:
 
 The HTTP API adheres to a defined Interface Definition Language (IDL). For this assignment, the RPC IDL of choice is *Thrift*, and you can find the relevant IDL file [idl_rpc.thrift](idl_rpc.thrift).
 
----
-
 # Data Storage
 The system utilizes **Redis**, an OLTP (Online Transaction Processing) database for storing message data. 
 
 Redis offers fast read and write operations. It is able to handle a high volume of requests per second. Additionally, Redis supports horizontal scalability through clustering, allowing developers to distribute the data across multiple Redis nodes. This enables developers to handle increasing message loads and provides fault tolerance by replicating data across nodes.
 
 When considering the data storage solution for this project, Redis emerges as a strong choice due to its **high performance, data persistence, rich features, scalability, and wide adoption** in the developer community.
-
----
 
 # Message Delivery
 The system ensures timely and consistent message delivery to recipients using a PULL mode approach. This means that there is no need to maintain a constant connection and push new messages in real-time. Instead, receivers can retrieve messages by utilizing the pull API, allowing them to fetch messages on demand.
@@ -72,7 +66,7 @@ Users can send a message by sending an HTTP POST request to `/api/send`.
 #### Request Payload Parameters
 
 | Name    | Type   | Description          | 
-| ------- | ------ | ---------------------| 
+| - |  | | 
 | Chat  | string | Sender Identifier : Receiver Identifier    |
 | Sender| string | Sender Identifier  |
 | Text    | string | Message Text Content |
@@ -102,7 +96,7 @@ Users can pull messages from a chat room by sending an HTTP GET request to `/api
 #### Request Payload Parameters
 
 | Name    | Type    | Description                                | Comment                   |
-| ------- | ------- | ------------------------------------------| ------------------------- |
+| - | - | | - |
 | Chat    | string  | Sender Identifier : Receiver Identifier    |                           |
 | Cursor  | int64     | Starting position of messages (inclusive)  | Default: 0                |
 | Limit   | int64     | Maximum number of messages per request     | Default: 10               |
@@ -123,7 +117,7 @@ HTTP Status Code: 200
 The response will contain the following data:
 
 | Name        | Type    | Description                      |
-| ----------- | ------- | -------------------------------- |
+| -- | - | -- |
 | Messages    | array[]   | List of messages                 |
 | Has_more    | boolean | Indicates if there are more messages to pull |
 | Next_cursor | int64    | Starting position of next page (inclusive) |
@@ -169,8 +163,6 @@ For more detailed information, please refer to the API specification file, [idl_
 
 You can either execute the command `docker-compose -f docker-compose.yml up` or simply right-click on your [docker-compose.yml](docker-compose.yml) file and choose the option to "compose up" from the context menu.
 ![docker](asset/docker.png)
-
----
 
 # Performance and Scalability
 The system is designed to handle a large number of users and messages while maintaining optimal performance. It is specifically designed to support more than 20 concurrent users, ensuring that the system remains efficient and scalable during high load situations.
@@ -235,8 +227,6 @@ Make sure to adjust the YAML files and configurations according to your specific
 
 ![Pods](asset/k8s-dashboard.png)
 
----
-
 ## Acknowledgements
 
 ### Code References
@@ -244,8 +234,6 @@ Make sure to adjust the YAML files and configurations according to your specific
 - [RPC Server Modification](https://github.com/weixingp/tiktok-tech-immersion-2023) by [weixingp](https://github.com/weixingp)
   - Description: The modification of rpc server was adapted from the code provided by weixingp. It helped in developing the connection between rpc-server and redis.
   - [Lark Document Reference](https://o386706e92.larksuite.com/docx/QE9qdhCmsoiieAx6gWEuRxvWsRc)
-
----
 
 ## Contributing
 

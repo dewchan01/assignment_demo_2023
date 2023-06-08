@@ -11,12 +11,12 @@ require (
 
 require (
 	github.com/alicebob/gopher-json v0.0.0-20200520072559-a9ecdc9d1d3a // indirect
-	github.com/go-redis/redismock/v9 v9.0.3 // indirect
+	github.com/gomodule/redigo v1.8.9 // indirect
 	github.com/yuin/gopher-lua v1.1.0 // indirect
 )
 
 require (
-	github.com/alicebob/miniredis/v2 v2.30.3
+	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/bytedance/gopkg v0.0.0-20220817015305-b879a72dc90f // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/chenzhuoyu/iasm v0.0.0-20230222070914-0b1b64b0e762 // indirect
