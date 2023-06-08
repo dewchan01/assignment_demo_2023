@@ -30,8 +30,8 @@
 # High Level of Instant Messaging System Architecture
 ![Architecture](asset/whiteboard_exported_image.png)
 The system consists of two services: 
-1.  HTTP server 
-2.  RPC server
+1.  HTTP server using Kitex
+2.  RPC server using Hertz
 
 The HTTP API adheres to a defined Interface Definition Language (IDL). For this assignment, the RPC IDL of choice is *Thrift*, and you can find the relevant IDL file [idl_rpc.thrift](idl_rpc.thrift).
 
